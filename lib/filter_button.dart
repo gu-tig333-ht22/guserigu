@@ -6,14 +6,16 @@ class FilterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 30,
+      width: 90,
       margin: const EdgeInsets.only(right: 23.0, top: 5.0),
       child: Consumer<EntryListData>(builder: (context, entryViewData, child) {
         return DropdownButtonHideUnderline(
           child: DropdownButton(
+            hint: Text(
+              entryViewData.filter!,
+              style: TextStyle(color: Colors.blueGrey[50]),
+            ),
             focusColor: Colors.blueGrey,
-            autofocus: false,
-            isExpanded: true,
             borderRadius: BorderRadius.circular(30),
             icon: const Icon(Icons.filter_alt_rounded),
             iconSize: 30.0,
