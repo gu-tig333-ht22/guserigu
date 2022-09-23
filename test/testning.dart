@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../lib/http_connection.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,6 +9,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   Widget build(BuildContext context) {
+    Future jsonObj = HttpConnection.fetchData();
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
