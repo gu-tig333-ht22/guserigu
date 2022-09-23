@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:template/error_notifier.dart';
 import 'main_view.dart';
-import 'entry_view_data.dart';
+import 'entry_list_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => EntryViewData()),
+        ChangeNotifierProvider(create: (context) => EntryListData()),
         ChangeNotifierProvider(create: (context) => ErrorNotifier())
       ],
       child: MaterialApp(

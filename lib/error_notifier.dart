@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ErrorNotifier extends ChangeNotifier {
-  String? _addEmptyEntry = null;
+  String? _emptyEntryWarning;
 
-  String? get addEmptyEntry => _addEmptyEntry;
+  String? get emptyEntryWarning => _emptyEntryWarning;
 
   set addEmptyEntryError(String? msg) {
-    _addEmptyEntry = msg;
+    _emptyEntryWarning = msg;
     notifyListeners();
   }
 }
