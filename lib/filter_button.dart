@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'entry_view_data.dart';
+import 'entry_list_data.dart';
 
 class FilterButton extends StatelessWidget {
-  FilterButton({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 18.0, top: 5.0),
-      child: Consumer<EntryViewData>(builder: (context, entryViewData, child) {
+      width: 90,
+      margin: const EdgeInsets.only(right: 23.0, top: 5.0),
+      child: Consumer<EntryListData>(builder: (context, entryViewData, child) {
         return DropdownButtonHideUnderline(
           child: DropdownButton(
-            value: entryViewData.filter,
+            hint: Text(
+              entryViewData.filter!,
+              style: TextStyle(color: Colors.blueGrey[50]),
+            ),
+            focusColor: Colors.blueGrey,
             borderRadius: BorderRadius.circular(30),
             icon: const Icon(Icons.filter_alt_rounded),
             iconSize: 30.0,
@@ -40,7 +43,7 @@ class FilterButton extends StatelessWidget {
       child: Text(
         value,
         style:
-            value == Provider.of<EntryViewData>(context, listen: false).filter
+            value == Provider.of<EntryListData>(context, listen: false).filter
                 ? TextStyle(color: Colors.orange[600])
                 : const TextStyle(),
       ),

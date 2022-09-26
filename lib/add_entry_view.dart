@@ -5,38 +5,28 @@ import './error_notifier.dart';
 class EntryViewState extends ChangeNotifier {}
 
 class AddEntryView extends StatelessWidget {
-  AddEntryView({super.key});
-
   String newEntryText = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
-      body: body(context),
-    );
-  }
-
-  PreferredSizeWidget appBar() {
-    return AppBar(
-        backgroundColor: Colors.blueGrey,
-        title: const Text('To-do'),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
-        centerTitle: true);
-  }
-
-  Widget body(context) {
-    return Container(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          const Spacer(),
-          addEntryTextField(),
-          spacing(),
-          addEntryButton(context),
-          const Spacer()
-        ],
+      appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
+          title: const Text('To-do'),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
+          centerTitle: true),
+      body: Container(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            const Spacer(),
+            addEntryTextField(),
+            spacing(),
+            addEntryButton(context),
+            const Spacer()
+          ],
+        ),
       ),
     );
   }
@@ -48,6 +38,7 @@ class AddEntryView extends StatelessWidget {
         onChanged: (text) {
           newEntryText = text;
         },
+        showCursor: false,
         style: TextStyle(color: Colors.blueGrey[100]),
         decoration: InputDecoration(
           filled: true,
@@ -61,7 +52,7 @@ class AddEntryView extends StatelessWidget {
           hintText: 'What are you going to do?',
           hintStyle: TextStyle(color: Colors.blueGrey[200]),
           helperStyle: TextStyle(color: Colors.blueGrey[100]),
-          errorText: errorNotifier.addEmptyEntry,
+          errorText: errorNotifier.emptyEntryWarning,
         ),
       );
     });
