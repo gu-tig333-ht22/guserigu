@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../lib/http_connection.dart';
+import '../lib/data/http_connection.dart';
 
 void main() {
   runApp(const MyApp());

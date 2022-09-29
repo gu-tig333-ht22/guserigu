@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'entry.dart';
+import '../models/entry.dart';
 import 'http_connection.dart';
 
 class EntryListData extends ChangeNotifier {
   String? _filterBy = 'All';
+
+  String textfieldText = '';
 
   // ignore: prefer_final_fields
   List<Entry> _entryList = [];
@@ -16,9 +18,10 @@ class EntryListData extends ChangeNotifier {
     fetchEntries();
   }
 
-  addEntry(String newEntryText) async {
-    List jsonList = await HttpConnection.postEntry(newEntryText);
+  addEntry() async {
+    List jsonList = await HttpConnection.postEntry(textfieldText);
     _entryList = jsonToEntryList(jsonList);
+    textfieldText = '';
     notifyListeners();
   }
 
