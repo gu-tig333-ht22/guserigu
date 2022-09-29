@@ -69,6 +69,13 @@ class AddEntryButton extends StatelessWidget {
             '') {
           Provider.of<EntryListData>(context, listen: false).addEntry();
           Navigator.pop(context);
+          final snackBar = SnackBar(
+            content: Text(
+              'Entry added.',
+              style: TextStyle(color: Colors.blueGrey[100]),
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else {
           Provider.of<ErrorNotifier>(context, listen: false)
               .addEmptyEntryError = 'Please add something to do.';

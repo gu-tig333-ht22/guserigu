@@ -54,6 +54,13 @@ class EntryRow extends StatelessWidget {
                 onPressed: () {
                   Provider.of<EntryListData>(context, listen: false)
                       .deleteEntry(entry.id);
+                  final snackBar = SnackBar(
+                    content: Text(
+                      'Entry deleted.',
+                      style: TextStyle(color: Colors.blueGrey[100]),
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
               ),
             ],
