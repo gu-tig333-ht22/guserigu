@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './error_notifier.dart';
-
-class EntryViewState extends ChangeNotifier {}
+import '../data/error_notifier.dart';
+import '../data/entry_list_data.dart';
 
 class AddEntryView extends StatelessWidget {
   String newEntryText = '';
@@ -21,22 +20,25 @@ class AddEntryView extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            addEntryTextField(),
-            spacing(),
-            addEntryButton(context),
+            AddEntryTextField(),
+            const SizedBox(height: 10.0),
+            AddEntryButton(),
             const Spacer()
           ],
         ),
       ),
     );
   }
+}
 
-  Widget addEntryTextField() {
+class AddEntryTextField extends StatelessWidget {
+  Widget build(BuildContext context) {
     return Consumer<ErrorNotifier>(builder: (context, errorNotifier, child) {
       return TextField(
         maxLength: 31,
         onChanged: (text) {
-          newEntryText = text;
+          Provider.of<EntryListData>(context, listen: false).textfieldText =
+              text;
         },
         showCursor: false,
         style: TextStyle(color: Colors.blueGrey[100]),
@@ -57,12 +59,16 @@ class AddEntryView extends StatelessWidget {
       );
     });
   }
+}
 
-  Widget addEntryButton(context) {
+class AddEntryButton extends StatelessWidget {
+  Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: () {
-        if (newEntryText != '') {
-          Navigator.pop(context, newEntryText);
+        if (Provider.of<EntryListData>(context, listen: false).textfieldText !=
+            '') {
+          Provider.of<EntryListData>(context, listen: false).addEntry();
+          Navigator.pop(context);
         } else {
           Provider.of<ErrorNotifier>(context, listen: false)
               .addEmptyEntryError = 'Please add something to do.';
@@ -71,12 +77,6 @@ class AddEntryView extends StatelessWidget {
       icon: const Icon(Icons.add),
       label: const Text('Add'),
       style: TextButton.styleFrom(primary: Colors.orange[600]),
-    );
-  }
-
-  Widget spacing() {
-    return const SizedBox(
-      height: 10.0,
     );
   }
 }
